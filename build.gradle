@@ -1,0 +1,17 @@
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        jcenter()
+    }
+}
+
+project(':sample') {
+    apply plugin: 'application'
+
+    mainClassName = 'com.github.naoty.circuit.sample.Sample'
+
+    dependencies {
+        compile project(':circuit')
+    }
+}
