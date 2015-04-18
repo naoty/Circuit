@@ -2,11 +2,13 @@
 
 A runner for serial or parallel tasks.
 
-## Todo
+## TODO
 - [x] Add Task interface
 - [x] Add SerialTasks
-- [ ] Add ParalellTasks
-- [ ] Enable Compound tasks
+- [x] Add ParallelTasks
+- [x] Enable Compound tasks
+- [ ] Brush up
+- [ ] Unit tests
 - [ ] Publish
 
 ## Usage
@@ -27,38 +29,37 @@ task.run("Hello, world!"); //=> 13
 ### Serial tasks
 
 ```java
-// task1<String, Integer> -> task2<Integer, String> -> task3<String, Integer>
+// task1 -> task2 -> task3
 Task<String, Integer> tasks = new SerialTasks.Builder<String, Integer, String>(task1, task2)
   .add(task3)
   .build();
 tasks.run("Hello, world!");
 ```
 
-### Paralell tasks
+### Parallel tasks
 
 ```java
 // [task1, task2]
-ParallelTasks tasks = ParalellTasks.Builder()
+Task<Integer, String> tasks = new ParallelTasks.Builder<Integer, String>()
     .add(task1)
     .add(task2)
     .build();
-tasks.run();
+tasks.run(3);
 ```
 
 ### Compound tasks
 
 ```java
 // task1 -> [task2, task3] -> task4
-ParallelTasks subtasks = ParallelTasks.Builder()
+Task<Integer, String> subtasks = ParallelTasks.Builder<Integer, String>()
     .add(task2)
     .add(task3)
     .build()
-SerialTasks tasks = SerialTasks.Builder()
-    .add(task1)
+Task<String, String> tasks = SerialTasks.Builder<String, Integer, String>(task1, task2)
     .add(subtasks)
     .add(task4)
     .build();
-tasks.run();
+tasks.run("Hello, world!");
 ```
 
 ## Installation
