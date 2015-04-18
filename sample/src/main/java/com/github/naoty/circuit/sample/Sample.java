@@ -60,7 +60,8 @@ public class Sample {
             }
         };
 
-        Task<String, Integer> tasks = new SerialTasks.Builder<String, Integer, String>(task1, task2)
+        Task<String, Integer> tasks = new SerialTasks.Builder<String, Integer>(task1)
+                .add(task2)
                 .add(task3)
                 .add(task4)
                 .add(task5)
@@ -171,7 +172,8 @@ public class Sample {
                 .add(task2)
                 .add(task3)
                 .build();
-        Task<String, Integer> tasks = new SerialTasks.Builder<String, Integer, String>(task1, subtasks)
+        Task<String, Integer> tasks = new SerialTasks.Builder<String, Integer>(task1)
+                .add(subtasks)
                 .add(task4)
                 .build();
         Integer result = tasks.run("Hi");

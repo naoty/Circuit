@@ -19,7 +19,7 @@ A runner for serial or parallel tasks.
 Task<String, Integer> task = new Task<String, Integer>() {
     @Override
     public Integer run(String text) {
-      return Integer.valueOf(text.length());
+        return text.length();
     }
 };
 
@@ -30,9 +30,10 @@ task.run("Hello, world!"); //=> 13
 
 ```java
 // task1 -> task2 -> task3
-Task<String, Integer> tasks = new SerialTasks.Builder<String, Integer, String>(task1, task2)
-  .add(task3)
-  .build();
+Task<String, Integer> tasks = new SerialTasks.Builder<String, Integer>(task1)
+    .add(task2)
+    .add(task3)
+    .build();
 tasks.run("Hello, world!");
 ```
 
@@ -55,7 +56,7 @@ Task<Integer, String> subtasks = ParallelTasks.Builder<Integer, String>()
     .add(task2)
     .add(task3)
     .build()
-Task<String, String> tasks = SerialTasks.Builder<String, Integer, String>(task1, task2)
+Task<String, String> tasks = SerialTasks.Builder<String, Integer>(task1)
     .add(subtasks)
     .add(task4)
     .build();

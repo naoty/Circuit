@@ -14,18 +14,19 @@ public class SerialTasks<T1, T2, T3> implements Task<T1, T3> {
         return mTask2.run(mTask1.run(obj));
     }
 
-    public static class Builder<U1, U2, U3> {
-        private Task<U1, U3> mTask;
+    public static class Builder<U1, U2> {
+        private Task<U1, U2> mTask;
 
-        public Builder(Task<U1, U2> task1, Task<U2, U3> task2) {
-            mTask = new SerialTasks<U1, U2, U3>(task1, task2);
+        public Builder(Task<U1, U2> task) {
+            mTask = task;
         }
 
-        public <U4> Builder<U1, U3, U4> add(Task<U3, U4> task) {
-            return new Builder<U1, U3, U4>(mTask, task);
+        public <U3> Builder<U1, U3> add(Task<U2, U3> task) {
+            Task<U1, U3> newTask = new SerialTasks<U1, U2, U3>(mTask, task);
+            return new Builder<U1, U3>(newTask);
         }
 
-        public Task<U1, U3> build() {
+        public Task<U1, U2> build() {
             return mTask;
         }
     }
