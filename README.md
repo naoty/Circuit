@@ -20,12 +20,11 @@ task.run("Hello, world!"); //=> 13
 ### Serial tasks
 
 ```java
-// task1 -> task2
-SerialTasks tasks = SerialTasks.Builder()
-    .add(task1)
-    .add(task2)
-    .build()
-tasks.run();
+// task1<String, Integer> -> task2<Integer, String> -> task3<String, Integer>
+Task<String, Integer> tasks = new SerialTasks.Builder<String, Integer, String>(task1, task2)
+  .add(task3)
+  .build();
+tasks.run("Hello, world!");
 ```
 
 ### Paralell tasks
