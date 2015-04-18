@@ -2,6 +2,13 @@
 
 A runner for serial or parallel tasks.
 
+## Todo
+- [x] Add Task interface
+- [x] Add SerialTasks
+- [ ] Add ParalellTasks
+- [ ] Enable Compound tasks
+- [ ] Publish
+
 ## Usage
 
 ### Single task
