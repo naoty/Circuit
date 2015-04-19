@@ -6,6 +6,12 @@ subprojects {
     }
 }
 
+project(':circuit') {
+    dependencies {
+        testCompile "junit:junit:+"
+    }
+}
+
 project(':sample') {
     apply plugin: 'application'
 

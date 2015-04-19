@@ -6,6 +6,8 @@ import java.util.List;
 public class ParallelTasks<T1, T2> implements Task<T1, T2> {
     private List<Task<T1, T2>> mTasks;
 
+    private ParallelTasks() {}
+
     private ParallelTasks(List<Task<T1, T2>> tasks) {
         mTasks = tasks;
     }

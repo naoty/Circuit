@@ -2,15 +2,6 @@
 
 A runner for serial or parallel tasks.
 
-## TODO
-- [x] Add Task interface
-- [x] Add SerialTasks
-- [x] Add ParallelTasks
-- [x] Enable Compound tasks
-- [ ] Brush up
-- [ ] Unit tests
-- [ ] Publish
-
 ## Usage
 
 ### Single task
